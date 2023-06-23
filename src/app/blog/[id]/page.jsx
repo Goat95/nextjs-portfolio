@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 
 async function getData(id) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+  const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
     cache: "no-store",
   });
 
@@ -23,26 +23,21 @@ const BlogPost = async ({ params }) => {
       <div className={styles.top}>
         <div className={styles.info}>
           <h1 className={styles.title}>{data.title}</h1>
-          <p className={styles.desc}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-            voluptatum possimus reiciendis praesentium soluta repellendus
-            distinctio officia rerum odit, vel doloribus dolorum facere at
-            beatae similique provident magnam, numquam corporis.
-          </p>
+          <p className={styles.desc}>{data.desc}</p>
           <div className={styles.author}>
             <Image
-              src=""
+              src={data.img}
               alt="Avatar"
               width={40}
               height={40}
               className={styles.avatar}
             />
-            <span className={styles.username}>John Doe</span>
+            <span className={styles.username}>{data.username}</span>
           </div>
         </div>
         <div className={styles.imageContainer}>
           <Image
-            src="https://images.pexels.com/photos/16353919/pexels-photo-16353919/free-photo-of-fontanna-di-trevi-in-rome-italy.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+            src={data.img}
             alt="Post Image"
             fill={true}
             className={styles.image}
@@ -50,27 +45,7 @@ const BlogPost = async ({ params }) => {
         </div>
       </div>
       <div className={styles.content}>
-        <p className={styles.text}>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam
-          itaque sunt nesciunt, aperiam dolor odit numquam distinctio cupiditate
-          possimus, expedita ullam laudantium. Corrupti qui unde, alias
-          architecto optio delectus fugiat.
-          <br />
-          <br />
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam
-          itaque sunt nesciunt, aperiam dolor odit numquam distinctio cupiditate
-          possimus, expedita ullam laudantium. Corrupti qui unde, alias
-          architecto optio delectus fugiat.
-          <br />
-          <br />
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam
-          itaque sunt nesciunt, aperiam dolor odit numquam distinctio cupiditate
-          possimus, expedita ullam laudantium. Corrupti qui unde, alias
-          architecto optio delectus fugiat. Lorem, ipsum dolor sit amet
-          consectetur adipisicing elit. Magnam itaque sunt nesciunt, aperiam
-          dolor odit numquam distinctio cupiditate possimus, expedita ullam
-          laudantium. Corrupti qui unde, alias architecto optio delectus fugiat.
-        </p>
+        <p className={styles.text}>{data.content}</p>
       </div>
     </div>
   );
