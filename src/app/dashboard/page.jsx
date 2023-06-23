@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import useSWR from "swr";
 
 import styles from "./page.module.css";
@@ -28,6 +29,10 @@ const Dashboard = () => {
   //   };
   //   getData();
   // }, []);
+
+  const session = useSession();
+
+  console.log(session);
 
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
